@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import framework.utils.SmartLogger;
+import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 
@@ -38,6 +39,10 @@ public abstract class BaseElement {
 
     public boolean isPresent() {
         return this.findElements().size() > 0;
+    }
+
+    public void focus() {
+        new Actions(Browser.getDriver()).moveToElement(this.findElement()).perform();
     }
 
     public int sizeList() {
