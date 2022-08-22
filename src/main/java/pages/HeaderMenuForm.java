@@ -8,23 +8,23 @@ import org.openqa.selenium.By;
 
 public class HeaderMenuForm extends BaseForm {
 
-    private static final String CATALOG_BTN = "button[@id='catalogPopupButton']";
-    private final String COMPUTERS_POP_MENU = "//li[contains(@data-zone-data,'97009164')]/a";
-    private final String LAPTOPS_POP_MENU_ITEM = "//div[contains(@data-zone-data,'54544')]/a";
+    private static final String CATALOG_BTN_LOCATOR = "button[@id='catalogPopupButton']";
+    private final String COMPUTERS_POP_MENU_LOCATOR = "//li[contains(@data-zone-data,'97009164')]/a";
+    private final String LAPTOPS_POP_MENU_ITEM_LOCATOR = "//div[contains(@data-zone-data,'54544')]/a";
 
     private HeaderMenuForm() {
-        super(new Button(By.xpath(CATALOG_BTN), "Header menu form uniq element"), "Header menu form");
+        super(new Button(By.xpath(CATALOG_BTN_LOCATOR), "Header menu form uniq element"), "Header menu form");
     }
 
     public void clickCatalogBtn() {
-        new Button(By.xpath(CATALOG_BTN), "Catalog").click();
+        new Button(By.xpath(CATALOG_BTN_LOCATOR), "Catalog").click();
     }
 
     public void focusComputersPopMenu() {
-        new PopMenu(By.xpath(COMPUTERS_POP_MENU), "Computers").focus();
+        new PopMenu(By.xpath(COMPUTERS_POP_MENU_LOCATOR), "Computers").focus();
     }
 
     public void clickLaptopsPopMenuItem() {
-        new PopMenuItem(By.xpath(LAPTOPS_POP_MENU_ITEM), "Laptops").click();
+        new PopMenuItem(By.xpath(LAPTOPS_POP_MENU_ITEM_LOCATOR), "Laptops").click();
     }
 }

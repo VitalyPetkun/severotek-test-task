@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PopMenuItem extends BaseElement {
+
     public PopMenuItem(By locator, String name) {
         super(locator, name);
     }

@@ -5,6 +5,7 @@ import framework.utils.SmartLogger;
 import org.openqa.selenium.By;
 
 public class TextBox extends BaseElement {
+
     public TextBox(By locator, String elementName) {
         super(locator, elementName);
     }
