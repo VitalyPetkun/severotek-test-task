@@ -3,7 +3,9 @@ package pages;
 import framework.BaseForm;
 import framework.browser.Browser;
 import framework.elements.*;
+import framework.utils.WaiterUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -63,6 +65,7 @@ public class LaptopsPage extends BaseForm {
 
     public List<String> getLaptopsNames() {
         List<String> laptopsNamesStr = new ArrayList<>();
+        ((JavascriptExecutor) Browser.getDriver()).executeScript("window.scrollBy(0,document.body.scrollHeight)");
         List<WebElement> laptopsNames = Browser.getDriver().findElements(By.xpath(LAPTOPS_NAMES_LOCATOR));
         for (int i = 0; i < laptopsNames.size(); i++) {
             laptopsNamesStr.add(laptopsNames.get(i).getText());

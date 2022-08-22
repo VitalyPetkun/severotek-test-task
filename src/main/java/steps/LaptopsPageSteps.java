@@ -38,8 +38,9 @@ public class LaptopsPageSteps {
 
     public static void assertIsCorrectLaptopsName(String manufacturerName) {
         List<String> laptopsName = laptopsPage.getLaptopsNames();
-        for (String laptopName: laptopsName) {
-            Assert.assertTrue(laptopName.contains(manufacturerName),
+        for (String laptopName : laptopsName) {
+            Assert.assertTrue(laptopName.toLowerCase().
+                            contains(manufacturerName.toLowerCase()),
                     "Laptops isn't correct name.");
         }
     }
@@ -49,8 +50,11 @@ public class LaptopsPageSteps {
         float firstPrice = Float.parseFloat(bottomPrice);
         float secondPrice = Float.parseFloat(topPrice);
         List<String> laptopsPrice = laptopsPage.getLaptopsPrices();
-        for (String laptopPrice: laptopsPrice) {
-            float currentPrice = Integer.parseInt(laptopPrice.replaceAll("[^0-9.]",""));
+
+        for (String laptopPrice : laptopsPrice) {
+            float currentPrice = Float.parseFloat(laptopPrice.replace(",", ".").
+                    replaceAll("[^0-9.]", ""));
+
             compare = firstPrice <= currentPrice && currentPrice <= secondPrice;
             Assert.assertTrue(compare, "Result laptops isn't correct price.");
         }

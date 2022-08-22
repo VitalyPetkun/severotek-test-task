@@ -1,6 +1,6 @@
 package framework;
 
-import framework.browser.WaiterUtils;
+import framework.utils.WaiterUtils;
 import framework.utils.SmartLogger;
 
 public abstract class BaseForm {

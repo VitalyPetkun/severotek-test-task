@@ -1,12 +1,11 @@
 package framework;
 
 import framework.browser.Browser;
-import framework.browser.WaiterUtils;
+import framework.utils.WaiterUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import framework.utils.SmartLogger;
-import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
 

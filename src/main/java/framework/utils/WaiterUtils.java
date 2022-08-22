@@ -1,5 +1,6 @@
-package framework.browser;
+package framework.utils;
 
+import framework.browser.Browser;
 import framework.services.ConfigVariables;
 import framework.services.Files;
 import framework.services.Paths;
@@ -10,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import framework.utils.PropertiesManager;
 
 import java.time.Duration;
+import java.util.List;
 
 public class WaiterUtils {
 
