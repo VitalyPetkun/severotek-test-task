@@ -2,7 +2,7 @@ package services;
 
 public enum Url {
 
-    MARKET_YANDEX("marketYandex");
+    MARKET_YANDEX("marketYandexUrl");
 
     private String url;
 

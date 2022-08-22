@@ -7,7 +7,7 @@ import java.util.List;
 
 public class LaptopsPageSteps {
 
-    private static LaptopsPage laptopsPage = new LaptopsPage();
+    private static final LaptopsPage laptopsPage = new LaptopsPage();
 
     private LaptopsPageSteps() {
     }
@@ -36,31 +36,22 @@ public class LaptopsPageSteps {
         laptopsPage.clickSearchBtn();
     }
 
-    public static void clickPageNumber(String pageNumber) {
-        laptopsPage.clickPageNumber(pageNumber);
-    }
-
     public static void assertIsCorrectLaptopsName(String manufacturerName) {
         List<String> laptopsName = laptopsPage.getLaptopsNames();
-        for (int i = 0; i < laptopsName.size(); i++) {
-            Assert.assertTrue(laptopsName.get(i).contains(manufacturerName),
+        for (String laptopName: laptopsName) {
+            Assert.assertTrue(laptopName.contains(manufacturerName),
                     "Laptops isn't correct name.");
         }
     }
 
     public static void assertIsCorrectLaptopsPrice(String bottomPrice, String topPrice) {
         boolean compare;
-        int firstPrice = Integer.parseInt(bottomPrice);
-        int secondPrice = Integer.parseInt(topPrice);
+        float firstPrice = Float.parseFloat(bottomPrice);
+        float secondPrice = Float.parseFloat(topPrice);
         List<String> laptopsPrice = laptopsPage.getLaptopsPrices();
-
-        for (int i = 0; i < laptopsPrice.size(); i++) {
-            int currentPrice = Integer.parseInt(laptopsPrice.get(i));
-            if (firstPrice <= currentPrice && currentPrice <= secondPrice) {
-                compare = true;
-            } else {
-                compare = false;
-            }
+        for (String laptopPrice: laptopsPrice) {
+            float currentPrice = Integer.parseInt(laptopPrice.replaceAll("[^0-9.]",""));
+            compare = firstPrice <= currentPrice && currentPrice <= secondPrice;
             Assert.assertTrue(compare, "Result laptops isn't correct price.");
         }
     }

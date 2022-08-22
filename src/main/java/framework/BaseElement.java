@@ -42,7 +42,9 @@ public abstract class BaseElement {
     }
 
     public void focus() {
-        new Actions(Browser.getDriver()).moveToElement(this.findElement()).perform();
+        WebElement element = WaiterUtils.elementToBeClickable(locator);
+        ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].focus();", element);
     }
 
     public int sizeList() {

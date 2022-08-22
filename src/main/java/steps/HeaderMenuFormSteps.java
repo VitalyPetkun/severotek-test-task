@@ -1,11 +1,10 @@
 package steps;
 
-import org.testng.Assert;
 import pages.HeaderMenuForm;
 
 public class HeaderMenuFormSteps {
 
-    private static HeaderMenuForm headerMenuForm = new HeaderMenuForm();
+    private static final HeaderMenuForm headerMenuForm = new HeaderMenuForm();
 
     private HeaderMenuFormSteps() {
     }
@@ -20,9 +19,5 @@ public class HeaderMenuFormSteps {
 
     public static void clickLaptopsPopMenuItem() {
         headerMenuForm.clickLaptopsPopMenuItem();
-    }
-
-    public static void assertIsVisible() {
-        Assert.assertTrue(headerMenuForm.isFormOpen(), "Header menu form isn't visible");
     }
 }

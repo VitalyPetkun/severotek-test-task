@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 
 public class HeaderMenuForm extends BaseForm {
 
-    private static final String CATALOG_BTN_LOCATOR = "button[@id='catalogPopupButton']";
+    private static final String CATALOG_BTN_LOCATOR = "//button[@id='catalogPopupButton']";
     private final String COMPUTERS_POP_MENU_LOCATOR = "//li[contains(@data-zone-data,'97009164')]/a";
     private final String LAPTOPS_POP_MENU_ITEM_LOCATOR = "//div[contains(@data-zone-data,'54544')]/a";
 

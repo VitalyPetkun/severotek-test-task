@@ -28,13 +28,6 @@ public class LaptopsPage extends BaseForm {
     private final String LAPTOPS_PRICES_LOCATOR =
             "//div[@data-index and not(@data-index='0')]//div[@data-zone-name='price']//span[@data-auto='mainPrice']";
 
-    private String manufacturerName = "";
-    private String pageNumber = "";
-    private String manufacturerNameLocator = String
-            .format("//span[contains(text(),'%s')]//ancestor::label/input", manufacturerName);
-    private String pageNumberLocator = String
-            .format("//div[contains(@data-auto,'pagination') and contains(text(),'%s')]", pageNumber);
-
     public LaptopsPage() {
         super(new Link(By.xpath(LAPTOPS_PAGE_UNIQ_ELEMENT_LOCATOR), "Laptops page uniq element"), "Laptops page");
     }
@@ -48,8 +41,9 @@ public class LaptopsPage extends BaseForm {
         new TextBox(By.xpath(MANUFACTURER_SEARCH_LOCATOR), "Manufacturer search").inputText(newManufacturerName);
     }
 
-    public void selectManufacturer(String newManufacturerName) {
-        manufacturerName = newManufacturerName;
+    public void selectManufacturer(String manufacturerName) {
+        String manufacturerNameLocator = String
+                .format("//span[contains(text(),'%s')]//ancestor::label/input/following-sibling::span", manufacturerName);
         new CheckBox(By.xpath(manufacturerNameLocator), "Manufacturer name").click();
     }
 
@@ -65,11 +59,6 @@ public class LaptopsPage extends BaseForm {
 
     public void clickSearchBtn() {
         new Button(By.xpath(SEARCH_LOCATOR), "Search").click();
-    }
-
-    public void clickPageNumber(String newPageNumber) {
-        pageNumber = newPageNumber;
-        new Button(By.xpath(pageNumberLocator), "Page number").click();
     }
 
     public List<String> getLaptopsNames() {

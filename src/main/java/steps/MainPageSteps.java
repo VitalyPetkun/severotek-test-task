@@ -5,7 +5,7 @@ import pages.MainPage;
 
 public class MainPageSteps {
 
-    private static MainPage mainPage = new MainPage();
+    private static final MainPage mainPage = new MainPage();
 
     private MainPageSteps() {
     }
