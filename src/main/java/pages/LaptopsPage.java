@@ -21,7 +21,7 @@ public class LaptopsPage extends BaseForm {
             "//span[contains(text(),'Цена')]//ancestor::fieldset//label[contains(text(),'от')]/following-sibling::input";
     private final String TOP_PRICE_LOCATOR =
             "//span[contains(text(),'Цена')]//ancestor::fieldset//label[contains(text(),'до')]/following-sibling::input";
-    private final String FOUND_LOCATOR =
+    private final String SEARCH_LOCATOR =
             "//span[contains(@data-auto,'found')]/span";
     private final String LAPTOPS_NAMES_LOCATOR =
             "//div[@data-index and not(@data-index='0')]//a[@title]";
@@ -34,7 +34,6 @@ public class LaptopsPage extends BaseForm {
             .format("//span[contains(text(),'%s')]//ancestor::label/input", manufacturerName);
     private String pageNumberLocator = String
             .format("//div[contains(@data-auto,'pagination') and contains(text(),'%s')]", pageNumber);
-
 
     public LaptopsPage() {
         super(new Link(By.xpath(LAPTOPS_PAGE_UNIQ_ELEMENT_LOCATOR), "Laptops page uniq element"), "Laptops page");
@@ -64,8 +63,8 @@ public class LaptopsPage extends BaseForm {
         new TextBox(By.xpath(TOP_PRICE_LOCATOR), "Top price").inputText(topPrice);
     }
 
-    public void clickFoundBtn() {
-        new Button(By.xpath(FOUND_LOCATOR),"Found").click();
+    public void clickSearchBtn() {
+        new Button(By.xpath(SEARCH_LOCATOR), "Search").click();
     }
 
     public void clickPageNumber(String newPageNumber) {

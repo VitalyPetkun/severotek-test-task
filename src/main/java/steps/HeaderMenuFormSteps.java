@@ -7,7 +7,8 @@ public class HeaderMenuFormSteps {
 
     private static HeaderMenuForm headerMenuForm = new HeaderMenuForm();
 
-    private HeaderMenuFormSteps() {}
+    private HeaderMenuFormSteps() {
+    }
 
     public static void clickCatalogBtn() {
         headerMenuForm.clickCatalogBtn();
