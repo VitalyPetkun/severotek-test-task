@@ -2,7 +2,7 @@ package services;
 
 public enum TestDataVariables {
 
-    manufacturer("manufacturer"),
+    manufacturerName("manufacturerName"),
     bottomPrice("bottomPrice"),
     topPrice("topPrice"),
     resultPageNumber("resultPageNumber");
