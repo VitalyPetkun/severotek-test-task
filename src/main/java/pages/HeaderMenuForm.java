@@ -12,7 +12,7 @@ public class HeaderMenuForm extends BaseForm {
     private final String COMPUTERS_POP_MENU_LOCATOR = "//li[contains(@data-zone-data,'97009164')]/a";
     private final String LAPTOPS_POP_MENU_ITEM_LOCATOR = "//div[contains(@data-zone-data,'54544')]/a";
 
-    private HeaderMenuForm() {
+    public HeaderMenuForm() {
         super(new Button(By.xpath(CATALOG_BTN_LOCATOR), "Header menu form uniq element"), "Header menu form");
     }
 

@@ -36,7 +36,7 @@ public class LaptopsPage extends BaseForm {
             .format("//div[contains(@data-auto,'pagination') and contains(text(),'%s')]", pageNumber);
 
 
-    private LaptopsPage() {
+    public LaptopsPage() {
         super(new Link(By.xpath(LAPTOPS_PAGE_UNIQ_ELEMENT_LOCATOR), "Laptops page uniq element"), "Laptops page");
     }
 
