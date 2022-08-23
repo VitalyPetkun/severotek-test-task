@@ -49,12 +49,12 @@ public class LaptopsPageSteps {
         boolean compare;
         float firstPrice = Float.parseFloat(bottomPrice);
         float secondPrice = Float.parseFloat(topPrice);
+        float currentPrice = 0;
+
         List<String> laptopsPrice = laptopsPage.getLaptopsPrices();
-
         for (String laptopPrice : laptopsPrice) {
-            float currentPrice = Float.parseFloat(laptopPrice.replace(",", ".").
+            currentPrice = Float.parseFloat(laptopPrice.replace(",", ".").
                     replaceAll("[^0-9.]", ""));
-
             compare = firstPrice <= currentPrice && currentPrice <= secondPrice;
             Assert.assertTrue(compare, "Result laptops isn't correct price.");
         }

@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import framework.utils.SmartLogger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseElement {
@@ -26,8 +27,8 @@ public abstract class BaseElement {
             WebElement element = WaiterUtils.elementToBeClickable(locator);
             ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
             element.click();
-        } catch (Exception ex) {
-            SmartLogger.logError("Don't click " + elementName + ".");
+        } catch (Exception | Error ex) {
+            SmartLogger.logError("Don't click " + elementName + " with locator: " + locator);
         }
     }
 
@@ -41,9 +42,14 @@ public abstract class BaseElement {
     }
 
     public void focus() {
-        WebElement element = WaiterUtils.elementToBeClickable(locator);
-        ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
-        ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].focus();", element);
+        SmartLogger.logInfo("Focus " + elementName + ".");
+        try {
+            WebElement element = WaiterUtils.elementToBeClickable(locator);
+            ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+            ((JavascriptExecutor) Browser.getDriver()).executeScript("arguments[0].focus();", element);
+        } catch (Exception | Error ex) {
+            SmartLogger.logError("Don't focus " + elementName + " with locator: " + locator);
+        }
     }
 
     public int sizeList() {
@@ -67,10 +73,24 @@ public abstract class BaseElement {
     }
 
     protected WebElement findElement() {
-        return Browser.getDriver().findElement(locator);
+        WebElement element = null;
+        try {
+            element = Browser.getDriver().findElement(locator);
+        } catch (Exception | Error ex) {
+            SmartLogger.logError("Don't find " + elementName + " with locator: " + locator);
+        }
+
+        return element;
     }
 
     protected List<WebElement> findElements() {
-        return Browser.getDriver().findElements(locator);
+        List<WebElement> elements = new ArrayList<>();
+        try {
+            elements = Browser.getDriver().findElements(locator);
+        } catch (Exception | Error ex) {
+            SmartLogger.logError("Don't find " + elementName + " with locator: " + locator);
+        }
+
+        return elements;
     }
 }

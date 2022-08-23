@@ -1,14 +1,8 @@
 package pages;
 
 import framework.BaseForm;
-import framework.browser.Browser;
 import framework.elements.*;
-import framework.utils.WaiterUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class LaptopsPage extends BaseForm {
@@ -26,9 +20,9 @@ public class LaptopsPage extends BaseForm {
     private final String SEARCH_LOCATOR =
             "//span[contains(@data-auto,'found')]/span";
     private final String LAPTOPS_NAMES_LOCATOR =
-            "//div[@data-index and not(@data-index='0')]//a[@title]";
+            "//div[@data-index]//a[@title]";
     private final String LAPTOPS_PRICES_LOCATOR =
-            "//div[@data-index and not(@data-index='0')]//div[@data-zone-name='price']//span[@data-auto='mainPrice']";
+            "//div[@data-index]//div[@data-zone-name='price']//span[@data-auto='mainPrice']";
 
     public LaptopsPage() {
         super(new Link(By.xpath(LAPTOPS_PAGE_UNIQ_ELEMENT_LOCATOR), "Laptops page uniq element"), "Laptops page");
@@ -46,7 +40,7 @@ public class LaptopsPage extends BaseForm {
     public void selectManufacturer(String manufacturerName) {
         String manufacturerNameLocator = String
                 .format("//span[contains(text(),'%s')]//ancestor::label/input/following-sibling::span", manufacturerName);
-        new CheckBox(By.xpath(manufacturerNameLocator), "Manufacturer name").click();
+        new CheckBox(By.xpath(manufacturerNameLocator), "Manufacturer with name '" + manufacturerName +  "'").click();
     }
 
     public void inputBottomPrice(String bottomPrice) {
@@ -64,23 +58,10 @@ public class LaptopsPage extends BaseForm {
     }
 
     public List<String> getLaptopsNames() {
-        List<String> laptopsNamesStr = new ArrayList<>();
-        ((JavascriptExecutor) Browser.getDriver()).executeScript("window.scrollBy(0,document.body.scrollHeight)");
-        List<WebElement> laptopsNames = Browser.getDriver().findElements(By.xpath(LAPTOPS_NAMES_LOCATOR));
-        for (int i = 0; i < laptopsNames.size(); i++) {
-            laptopsNamesStr.add(laptopsNames.get(i).getText());
-        }
-
-        return laptopsNamesStr;
+        return this.getElementsText(By.xpath(LAPTOPS_NAMES_LOCATOR));
     }
 
     public List<String> getLaptopsPrices() {
-        List<String> laptopsPricesStr = new ArrayList<>();
-        List<WebElement> laptopsPrices = Browser.getDriver().findElements(By.xpath(LAPTOPS_PRICES_LOCATOR));
-        for (int i = 0; i < laptopsPrices.size(); i++) {
-            laptopsPricesStr.add(laptopsPrices.get(i).getText());
-        }
-
-        return laptopsPricesStr;
+        return this.getElementsText(By.xpath(LAPTOPS_PRICES_LOCATOR));
     }
 }
